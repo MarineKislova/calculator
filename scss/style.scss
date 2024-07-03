@@ -17,60 +17,79 @@
 @import "variable";
 @import "calcvariables";
 
-// Тип адаптива:
-// 1 = чуйність (у контейнера немає брейкпоінтів),
-// 2 = по брейк-поїнт (контейнер змінює свою ширину по брейк-поїнт)
-$responsiveType: 1;
+// // Оболонка wrapper
+// .wrapper {
+//   min-height: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   overflow: hidden;
+//   @supports (overflow: clip) {
+//     overflow: clip;
+//   }
+//   // Притискаємо footer
+//   > main {
+//     flex: 1 1 auto;
+//   }
+//   // Фікс для слайдерів
+//   > * {
+//     min-width: 0;
+//   }
+// }
 
-@if ($responsiveType==1) {
-  // Чуйна
-  [class*="__container"] {
-    @if ($maxWidthContainer>0) {
-      max-width: toRem($containerWidth);
-      margin: 0 auto;
-    }
-    @if ($containerPadding>0) {
-      @if ($maxWidthContainer>0) {
-        padding: 0 toRem(math.div($containerPadding, 2));
-      } @else {
-        @include adaptiveValue(
-          "padding-left",
-          math.di($containerPadding, 2),
-          15
-        );
-        @include adaptiveValue(
-          "padding-right",
-          math.di($containerPadding, 2),
-          15
-        );
-      }
-    }
-  }
-} @else {
-  // Брейк-поїнтами
-  [class*="__container"] {
-    margin: 0 auto;
-    @if ($maxWidthContainer>0) {
-      max-width: toRem($containerWidth);
-    } @else {
-      @if ($containerPadding>0) {
-        padding: 0 toRem(math.div($containerPadding, 2));
-      }
-    }
-    @media (max-width: $pc) {
-      max-width: toRem(970);
-    }
-    @media (max-width: $tablet) {
-      max-width: toRem(750);
-    }
-    @media (max-width: $mobile) {
-      max-width: toRem(550);
-      @if ($containerPadding>0 and $maxWidthContainer>0) {
-        padding: 0 toRem(math.div($containerPadding, 2));
-      }
-    }
-  }
-}
+// // Тип адаптива:
+// // 1 = чуйність (у контейнера немає брейкпоінтів),
+// // 2 = по брейк-поїнт (контейнер змінює свою ширину по брейк-поїнт)
+// $responsiveType: 1;
+
+// @if ($responsiveType==1) {
+//   // Чуйна
+//   [class*="__container"] {
+//     @if ($maxWidthContainer>0) {
+//       max-width: toRem($containerWidth);
+//       margin: 0 auto;
+//     }
+//     @if ($containerPadding>0) {
+//       @if ($maxWidthContainer>0) {
+//         padding: 0 toRem(math.div($containerPadding, 2));
+//       } @else {
+//         @include adaptiveValue(
+//           "padding-left",
+//           math.div($containerPadding, 2),
+//           15
+//         );
+//         @include adaptiveValue(
+//           "padding-right",
+//           math.div($containerPadding, 2),
+//           15
+//         );
+//       }
+//     }
+//   }
+// } @else {
+//   // Брейк-поїнтами
+//   [class*="__container"] {
+//     margin: 0 auto;
+//     @if ($maxWidthContainer>0) {
+//       max-width: toRem($containerWidth);
+//     } @else {
+//       @if ($containerPadding>0) {
+//         padding: 0 toRem(math.div($containerPadding, 2));
+//       }
+//     }
+//     @media (max-width: $pc) {
+//       max-width: toRem(970);
+//     }
+//     @media (max-width: $tablet) {
+//       max-width: toRem(750);
+//     }
+//     @media (max-width: $mobile) {
+//       max-width: none;
+//       @if ($containerPadding>0 and $maxWidthContainer>0) {
+//         padding: 0 toRem(math.div($containerPadding, 2));
+//       }
+//     }
+//   }
+// }
 
 // .wrapper {
 //   min-height: 100%;
@@ -87,57 +106,47 @@ $responsiveType: 1;
 //   margin: 0px auto;
 // }
 
-.body {
-  background-color: #6f6d6d;
-}
+// .body {
+//   background-color: #6f6d6d;
+// }
 
 .calculator {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  // width: 400px;
-  // height: 100%;
-  margin: 0px auto;
-  margin-top: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  // width: 1250px;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+    // width: 1250px;
+    // height: 100%;
+    margin: 0px auto;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 
   &__header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin: 0px auto;
-    // margin-top: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background: rgb(86, 78, 78);
-    background: linear-gradient(
-      90deg,
-      rgba(86, 78, 78, 1) 24%,
-      rgba(169, 169, 169, 1) 84%
-    );
-    color: rgb(76, 59, 59);
-    // max-width: 100%;
-    width: 1250px;
+    // width: 1250px;
+    background-color: #a79e9e;
   }
 
   &__logo {
-    width: 100px;
-    border-radius: 100%;
+    img {
+      max-width: 100px;
+      border-radius: 100%;
+    }
   }
 
   &__title {
-    font-size: 25px;
-    // padding-left: 35%;
-    // color: #564e4e;
+   font-size: 26px;
+   color: #544a4a;
   }
 
   &__body {
     display: flex;
-    // flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
   }
 
@@ -146,22 +155,9 @@ $responsiveType: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0px auto;
-    margin-top: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 20px;
   }
 
   &__link {
-    // width: 50px;
-    // height: 50px;
-    // background-color: #000;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    a {
-      color: #000;
-      text-decoration: none;
-    }
+    padding-top: 15px;
   }
 }

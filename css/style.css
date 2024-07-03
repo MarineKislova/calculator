@@ -83,17 +83,7 @@ h6 {
   font-size: inherit;
 }
 
-[class*=__container] {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 0.9375rem;
-}
-
-.body {
-  background-color: #6f6d6d;
-}
-
-.calculator {
+.calculator__container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -104,9 +94,6 @@ h6 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   margin: 0px auto;
   margin-top: 20px;
   padding-top: 10px;
@@ -122,29 +109,23 @@ h6 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0px auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background: rgb(86, 78, 78);
-  background: -webkit-gradient(linear, left top, right top, color-stop(24%, rgb(86, 78, 78)), color-stop(84%, rgb(169, 169, 169)));
-  background: linear-gradient(90deg, rgb(86, 78, 78) 24%, rgb(169, 169, 169) 84%);
-  color: rgb(76, 59, 59);
-  width: 1250px;
+  background-color: #a79e9e;
 }
-.calculator__logo {
-  width: 100px;
+.calculator__logo img {
+  max-width: 100px;
   border-radius: 100%;
 }
 .calculator__title {
-  font-size: 25px;
+  font-size: 26px;
+  color: #544a4a;
 }
 .calculator__body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -163,17 +144,7 @@ h6 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0px auto;
-  margin-top: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 20px;
 }
 .calculator__link {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.calculator__link a {
-  color: #000;
-  text-decoration: none;
+  padding-top: 15px;
 }/*# sourceMappingURL=style.css.map */
