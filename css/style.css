@@ -129,7 +129,6 @@ h6 {
   background: -webkit-gradient(linear, left top, right top, color-stop(24%, rgb(86, 78, 78)), color-stop(84%, rgb(169, 169, 169)));
   background: linear-gradient(90deg, rgb(86, 78, 78) 24%, rgb(169, 169, 169) 84%);
   color: rgb(76, 59, 59);
-  width: 1250px;
 }
 .calculator__logo {
   width: 100px;

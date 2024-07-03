@@ -64,7 +64,7 @@ $responsiveType: 1;
       max-width: toRem(750);
     }
     @media (max-width: $mobile) {
-      max-width: none;
+      max-width: toRem(550);
       @if ($containerPadding>0 and $maxWidthContainer>0) {
         padding: 0 toRem(math.div($containerPadding, 2));
       }
@@ -119,7 +119,7 @@ $responsiveType: 1;
       rgba(169, 169, 169, 1) 84%
     );
     color: rgb(76, 59, 59);
-    width: 1250px;
+    // width: 1250px;
   }
 
   &__logo {
