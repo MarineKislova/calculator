@@ -112,7 +112,7 @@ h6 {
   background-color: #a79e9e;
 }
 .calculator__logo img {
-  max-width: 100px;
+  width: 100px;
   border-radius: 100%;
 }
 .calculator__title {
