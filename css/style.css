@@ -116,9 +116,9 @@ h6 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -129,6 +129,7 @@ h6 {
   background: -webkit-gradient(linear, left top, right top, color-stop(24%, rgb(86, 78, 78)), color-stop(84%, rgb(169, 169, 169)));
   background: linear-gradient(90deg, rgb(86, 78, 78) 24%, rgb(169, 169, 169) 84%);
   color: rgb(76, 59, 59);
+  width: 1250px;
 }
 .calculator__logo {
   width: 100px;
@@ -136,15 +137,14 @@ h6 {
 }
 .calculator__title {
   font-size: 25px;
-  padding-left: 35%;
 }
 .calculator__body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
