@@ -1,0 +1,32 @@
+$maxWidthContainer: 1250; // макетное значение
+$maxWidth: 1920; //max размер экрана, подкотрый будем расширять макетное значение
+$minWidth: 320;
+$mainColor: #000;
+$fontSize: 16;
+$fontFamily: "Helvetica Neue", Helvetica, Arial;
+$containerPadding: 30; // (30 = по 15px слева и справа, 0 = отсутствует отступ)
+$containerWidth: $maxWidthContainer + $containerPadding; //ширина для первого брейкпоинта
+
+//Percent
+@function percent($px, $from: 100) {
+  $result: math.div($px, $from) * 100%;
+  @return $result;
+}
+//REM
+@function toRem($px, $current: 16) {
+  $result: math.div($px, $current) + rem;
+  @return $result;
+}
+//EM
+@function toEm($px, $current: 16) {
+  $result: math.div($px, $current) + em;
+  @return $result;
+}
+
+// Брейк-поїнти
+$pc: toEm(
+  $containerWidth
+); // ПК, ноутбуки, деякі планшети у горизонтальному положенні
+$tablet: toEm(991.98); // Планшети, деякі телефони в горизонтальному положенні
+$mobile: toEm(767.98); // Телефони L
+$mobileSmall: toEm(479.98); // Телефони S

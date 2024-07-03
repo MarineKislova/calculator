@@ -1,0 +1,265 @@
+@use "sass:math";
+
+@font-face {
+  font-family: "Colus Regular";
+  src: url("../fonts/colus_regular.eot"); /* IE 9 Compatibility Mode */
+  src: url("../fonts/colus_regular.eot?#iefix") format("embedded-opentype"),
+    /* IE < 9 */ url("../fonts/colus_regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/colus_regular.woff")
+      format("woff"),
+    /* Firefox >= 3.6, any other modern browser */
+      url("../fonts/colus_regular.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/colus_regular.svg#colus_regular")
+      format("svg"); /* Chrome < 4, Legacy iOS */
+}
+
+@import "null";
+@import "variable";
+@import "calcvariables";
+
+// Тип адаптива:
+// 1 = чуйність (у контейнера немає брейкпоінтів),
+// 2 = по брейк-поїнт (контейнер змінює свою ширину по брейк-поїнт)
+$responsiveType: 1;
+
+@if ($responsiveType==1) {
+  // Чуйна
+  [class*="__container"] {
+    @if ($maxWidthContainer>0) {
+      max-width: toRem($containerWidth);
+      margin: 0 auto;
+    }
+    @if ($containerPadding>0) {
+      @if ($maxWidthContainer>0) {
+        padding: 0 toRem(math.div($containerPadding, 2));
+      } @else {
+        @include adaptiveValue(
+          "padding-left",
+          math.di($containerPadding, 2),
+          15
+        );
+        @include adaptiveValue(
+          "padding-right",
+          math.di($containerPadding, 2),
+          15
+        );
+      }
+    }
+  }
+} @else {
+  // Брейк-поїнтами
+  [class*="__container"] {
+    margin: 0 auto;
+    @if ($maxWidthContainer>0) {
+      max-width: toRem($containerWidth);
+    } @else {
+      @if ($containerPadding>0) {
+        padding: 0 toRem(math.div($containerPadding, 2));
+      }
+    }
+    @media (max-width: $pc) {
+      max-width: toRem(970);
+    }
+    @media (max-width: $tablet) {
+      max-width: toRem(750);
+    }
+    @media (max-width: $mobile) {
+      max-width: none;
+      @if ($containerPadding>0 and $maxWidthContainer>0) {
+        padding: 0 toRem(math.div($containerPadding, 2));
+      }
+    }
+  }
+}
+
+// .wrapper {
+//   min-height: 100%;
+//   overflow: hidden;
+//   display: flex;
+//   flex-direction: column;
+// }
+// .content {
+//   flex: 1 1 auto;
+// }
+
+// .container {
+//   max-width: 1200px;
+//   margin: 0px auto;
+// }
+
+.calculator-one {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 100%;
+  margin: 0px auto;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 7px;
+
+  input[id="displayscreen"] {
+    width: 90%;
+    padding: 10px;
+    margin: 5px auto;
+    font-size: 18px;
+    color: dimgray;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border-color: #c0c0c0;
+    background-color: #dcdcdc;
+    box-shadow: 1px 1px 2px 1px rgba(192, 192, 192, 0.7) inset;
+    box-sizing: border-box;
+    outline: none;
+    &:focus {
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      box-shadow: 1px 1px 3px 1px rgba(113, 106, 106, 0.7) inset;
+      outline: none;
+    }
+  }
+  input[id="displayresult"] {
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+    font-size: 18px;
+    color: dimgray;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border-color: #c0c0c0;
+    background-color: #dcdcdc;
+    box-shadow: 1px 1px 2px 1px rgba(192, 192, 192, 0.7) inset;
+    box-sizing: border-box;
+  }
+
+  &__keypad {
+    margin-top: 10px;
+    display: grid;
+    grid-template-areas:
+      "c scope-left scope-right backspace backspace"
+      "seven eigth nine division multi "
+      "four five six minus plus"
+      "one two three percent ."
+      "zero zero dot equal equal";
+    grid-gap: 10px;
+    /* padding: 10px; */
+    justify-items: center;
+    align-items: center;
+  }
+
+  &__btn {
+    width: 60px;
+    height: 60px;
+    background: $digitcolor;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 63px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+
+    &:hover {
+      filter: brightness(130%);
+    }
+
+    &:active {
+      filter: brightness(90%);
+    }
+  }
+
+  [value="C"] {
+    grid-area: c;
+    background-color: $clearcolor;
+  }
+  [value="("] {
+    grid-area: scope-left;
+    background-color: $othercolor;
+  }
+  [value=")"] {
+    grid-area: scope-right;
+    background-color: $othercolor;
+  }
+  [value="backspace"] {
+    grid-area: backspace;
+    background-color: $othercolor;
+    font-size: 12px;
+    font-weight: bolder;
+    border-radius: 34px;
+    width: 100%;
+  }
+
+  [value="7"] {
+    grid-area: seven;
+  }
+  [value="8"] {
+    grid-area: eigth;
+  }
+  [value="9"] {
+    grid-area: nine;
+  }
+  [value="/"] {
+    grid-area: division;
+    background-color: $operatorcolor;
+    border-radius: 40%;
+  }
+  [value="*"] {
+    grid-area: multi;
+    background-color: $operatorcolor;
+    border-radius: 40%;
+  }
+
+  [value="4"] {
+    grid-area: four;
+  }
+  [value="5"] {
+    grid-area: five;
+  }
+  [value="6"] {
+    grid-area: six;
+  }
+  [value="-"] {
+    grid-area: minus;
+    background-color: $operatorcolor;
+    border-radius: 40%;
+  }
+
+  [value="1"] {
+    grid-area: one;
+  }
+  [value="2"] {
+    grid-area: two;
+  }
+  [value="3"] {
+    grid-area: three;
+  }
+  [value="+"] {
+    grid-area: plus;
+    background-color: $operatorcolor;
+    border-radius: 40%;
+  }
+  [value="%"] {
+    grid-area: percent;
+    background-color: $operatorcolor;
+  }
+
+  [value="0"] {
+    grid-area: zero;
+    border-radius: 34px;
+    width: 100%;
+  }
+  [value="."] {
+    grid-area: dot;
+  }
+  [value="="] {
+    grid-area: equal;
+    background-color: $operatorcolor;
+    border-radius: 34px;
+    width: 100%;
+  }
+}
+.calc {
+}
