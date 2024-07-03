@@ -29,7 +29,7 @@ body {
 body {
   color: #000;
   line-height: 1;
-  font-family: "Helvetica Neue", Helvetica, Arial;
+  font-family: "Colus Regular";
   font-size: 16;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
@@ -41,7 +41,7 @@ body {
 input,
 button,
 textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial;
+  font-family: "Colus Regular";
   font-size: inherit;
   line-height: inherit;
   color: inherit;

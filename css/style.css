@@ -1,0 +1,180 @@
+@font-face {
+  font-family: "Colus Regular";
+  src: url("../fonts/colus_regular.eot"); /* IE 9 Compatibility Mode */
+  src: url("../fonts/colus_regular.eot?#iefix") format("embedded-opentype"), url("../fonts/colus_regular.woff2") format("woff2"), url("../fonts/colus_regular.woff") format("woff"), url("../fonts/colus_regular.ttf") format("truetype"), url("../fonts/colus_regular.svg#colus_regular") format("svg"); /* Chrome < 4, Legacy iOS */
+}
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  display: inline-block;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: #000;
+  line-height: 1;
+  font-family: "Colus Regular";
+  font-size: 16;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+button,
+textarea {
+  font-family: "Colus Regular";
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+input,
+textarea {
+  width: 100%;
+}
+
+button,
+select,
+option {
+  cursor: pointer;
+}
+
+a {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+[class*=__container] {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 0.9375rem;
+}
+
+.body {
+  background-color: #6f6d6d;
+}
+
+.calculator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px auto;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.calculator__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: rgb(86, 78, 78);
+  background: -webkit-gradient(linear, left top, right top, color-stop(24%, rgb(86, 78, 78)), color-stop(84%, rgb(169, 169, 169)));
+  background: linear-gradient(90deg, rgb(86, 78, 78) 24%, rgb(169, 169, 169) 84%);
+  color: rgb(76, 59, 59);
+  width: 1250px;
+}
+.calculator__logo {
+  width: 100px;
+  border-radius: 100%;
+}
+.calculator__title {
+  font-size: 25px;
+  padding-left: 35%;
+}
+.calculator__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.calculator__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px auto;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+.calculator__link {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.calculator__link a {
+  color: #000;
+  text-decoration: none;
+}/*# sourceMappingURL=style.css.map */
