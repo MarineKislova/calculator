@@ -28,6 +28,7 @@ window.addEventListener("DOMContentLoaded", () => {
   function backspace() {
     displayScreen.value = displayScreen.value.slice(0, -1);
     displayResult.value = displayResult.value.slice(0, -1);
+    
   }
 
   document.querySelector("#backspace").addEventListener("click", backspace);
