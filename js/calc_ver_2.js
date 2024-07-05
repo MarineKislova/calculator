@@ -18,8 +18,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   //сброс данный с экрана
   function clearDisplay() {
-    // sign = "";
-    finish = false;
+    sign = "";
+    // finish = false;
     displayScreen.value = "";
     displayResult.value = "";
     numA.value = "";
@@ -40,24 +40,22 @@ window.addEventListener("DOMContentLoaded", () => {
   digits.forEach((item, i) => {
     item.addEventListener("click", (e) => {
       //нажата кнопка калькулятора All Clear / C
-      if (e.target.classList.contains("#clearAll")) return;
+      // if (e.target.classList.contains("#clearAll")) return;
 
       let digitValue = +digits[i].value;
-      console.log(digitValue);
-      console.log(typeof digitValue);
 
-      // operator.forEach((item) => {
-      //   if (digitValue === item) {
-      //     sign = item;
-      //   }
-      // });
       displayScreen.value += digitValue;
-      //   e.preventDefault();
-      if (numA.value !== 0 && sign === "") {
+
+      if (numA.value !== NaN && sign === "") {
         numA.value = displayScreen.value;
       } else if (numA.value !== "" && sign !== "") {
-        numB.value += digitValue;
+        numB.value += +digitValue;
       }
+
+      console.log(+numA.value);
+      console.log(typeof +numA.value);
+      console.log(+numB.value);
+      console.log(typeof +numB.value);
     });
   });
 
@@ -69,18 +67,17 @@ window.addEventListener("DOMContentLoaded", () => {
         finish = true;
         console.log(sign);
       }
-      if (sign === "%" && sign === "+") {
-        // numA.value = +numA.value / 100;
-        let a = +numB.value.slice(0, -1) / 100;
-        console.log(a);
-        
-        result = +numA.value + a;
-        // displayScreen.value += item.value;
-        // finish = true;
-        console.log(sign);
+      if (sign === "%") {
+        percent();
       }
     });
   });
+
+  function percent() {
+    numB.value = (+numA.value * +numB.value) / 100;
+    console.log(+numB.value);
+    console.log(typeof +numB.value);
+  }
 
   //выполнение вычислений
   let result;
@@ -89,6 +86,8 @@ window.addEventListener("DOMContentLoaded", () => {
     switch (sign) {
       case "+":
         result = +numA.value + +numB.value;
+        console.log(+numB.value);
+        console.log(typeof +numB.value);
         break;
       case "-":
         result = +numA.value - +numB.value;
@@ -106,18 +105,17 @@ window.addEventListener("DOMContentLoaded", () => {
         result = Math.pow(+numA.value, +numB.value);
         // console.log(result);
         break;
-      // case "%":
-      // result = +numA.value % +numB.value;
-      // console.log(result);
-      // break;
+      default:
+        break;
     }
+    console.log(+numB.value);
     console.log(result);
+    console.log(typeof result);
     displayResult.value = result;
-    // numA.value = "";
-    // numB.value = "";
-    // displayScreen.value = result;
+    numA.value = "";
+    numB.value = "";
     console.log(typeof displayResult.value);
-    finish = true;
+
   }
 
   document.querySelector(".calc").addEventListener("click", calc);
