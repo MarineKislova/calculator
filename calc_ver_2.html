@@ -18,8 +18,11 @@
           <div class="calculator-two">
             <div class="calculator-two__container">
               <input type="text" id="displayscreen" />
-              <input type="text" id="numA" />
-              <input type="text" id="numB" />
+              <input type="text" id="numA" disabled />
+              <input type="text" id="numB" disabled />
+              <input type="text" id="numC" disabled />
+
+              <input type="text" id="numPercent" disabled />
               <input type="text" id="displayresult" disabled />
               <div class="calculator-two__keypad">
                 <button value="C" id="clearAll" class="calculator-two__btn">
@@ -60,9 +63,7 @@
                 <button value="6" id="digital" class="calculator-two__btn">
                   6
                 </button>
-                <button value="-" id="op" class="calculator-two__btn">
-                  -
-                </button>
+                <button value="-" id="op" class="calculator-two__btn">-</button>
                 <button value="+" id="op" class="calculator-two__btn">+</button>
 
                 <button value="1" id="digital" class="calculator-two__btn">
@@ -75,18 +76,19 @@
                   3
                 </button>
 
-                <button value="%" id="op" class="calculator-two__btn">%</button>
+                <button
+                  value="%"
+                  id="percent"
+                  class="calculator-two__btn percent"
+                >
+                  %
+                </button>
                 <button value="^" id="op" class="calculator-two__btn">^</button>
 
                 <button value="0" id="digital" class="calculator-two__btn">
                   0
                 </button>
-                <button
-                  value="."
-                  id="dot"
-                  class="calculator-two__btn"
-                disabled
-                >
+                <button value="." id="dot" class="calculator-two__btn" disabled>
                   .
                 </button>
 

@@ -136,7 +136,7 @@ $responsiveType: 1;
     background-color: #dcdcdc;
     box-shadow: 1px 1px 2px 1px rgba(192, 192, 192, 0.7) inset;
     box-sizing: border-box;
-    // display: none;
+    display: none;
   }
   input[id="numB"] {
     width: 90%;
@@ -150,10 +150,10 @@ $responsiveType: 1;
     background-color: #dcdcdc;
     box-shadow: 1px 1px 2px 1px rgba(192, 192, 192, 0.7) inset;
     box-sizing: border-box;
-    // display: none;
+    display: none;
   }
 
-  input[id="displayresult"] {
+  input[id="numC"] {
     width: 90%;
     padding: 10px;
     margin: 0 auto;
@@ -165,6 +165,37 @@ $responsiveType: 1;
     background-color: #dcdcdc;
     box-shadow: 1px 1px 2px 1px rgba(192, 192, 192, 0.7) inset;
     box-sizing: border-box;
+    display: none;
+  }
+
+  input[id="numPercent"] {
+    width: 90%;
+    padding: 10px;
+    margin: 5px auto;
+    font-size: 18px;
+    color: dimgray;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border-color: #c0c0c0;
+    background-color: #dcdcdc;
+    box-shadow: 1px 1px 2px 1px rgba(192, 192, 192, 0.7) inset;
+    box-sizing: border-box;
+    display: none;
+  }
+
+  input[id="displayresult"] {
+    width: 90%;
+    padding: 10px;
+    margin: 5px auto;
+    font-size: 18px;
+    color: dimgray;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border-color: #c0c0c0;
+    background-color: #dcdcdc;
+    box-shadow: 1px 1px 2px 1px rgba(192, 192, 192, 0.7) inset;
+    box-sizing: border-box;
+    
   }
 
   &__keypad {
