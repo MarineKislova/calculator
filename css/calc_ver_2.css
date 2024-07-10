@@ -207,7 +207,7 @@ h6 {
           box-sizing: border-box;
   display: none;
 }
-.calculator-two input[id=numPercent] {
+.calculator-two input[id=percentscreen] {
   width: 90%;
   padding: 10px;
   margin: 5px auto;

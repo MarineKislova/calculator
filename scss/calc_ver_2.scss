@@ -168,7 +168,7 @@ $responsiveType: 1;
     display: none;
   }
 
-  input[id="numPercent"] {
+  input[id="percentscreen"] {
     width: 90%;
     padding: 10px;
     margin: 5px auto;
@@ -195,7 +195,7 @@ $responsiveType: 1;
     background-color: #dcdcdc;
     box-shadow: 1px 1px 2px 1px rgba(192, 192, 192, 0.7) inset;
     box-sizing: border-box;
-    
+    // display: none;
   }
 
   &__keypad {

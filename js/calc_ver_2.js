@@ -1,12 +1,15 @@
 window.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
+  console.log(parseInt(1.9));
+  console.log(parseFloat(1.9));
+
   // CALCULATOR
   let sign = ""; // знак операции
   let percentValue = ""; // процентное значение
   let digitsValue = "";
 
-  const operator = ["*", "/", "+", "-", "%", "^", "="];
+  const operator = ["*", "/", "+", "-", ".", "%", "^", "="];
   let per = "%";
   const digit = ["0", "1", "2", "3", "4", "5", "6'", "7", "8", "9", "."];
   const displayScreen = document.querySelector("#displayscreen");
@@ -15,7 +18,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const numA = document.querySelector("#numA");
   const numB = document.querySelector("#numB");
   const numC = document.querySelector("#numC");
-  const numPercent = document.querySelector("#numPercent");
+  const screen = document.querySelector("#screen");
+  const percentScreen = document.querySelector("#percentscreen");
   let digits = document.querySelectorAll("#digital");
   let op = document.querySelectorAll("#op");
 
@@ -28,8 +32,9 @@ window.addEventListener("DOMContentLoaded", () => {
     numA.value = "";
     numB.value = "";
     numC.value = "";
-    numPercent.value = "";
-    numPercent.style.display = "none";
+    // screen.value = "";
+    percentScreen.value = "";
+    // percentScreen.style.display = "none";
   }
 
   document.querySelector("#clearAll").onclick = clearDisplay;
@@ -77,12 +82,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function percentOperation() {
     numB.value = +numC.value;
-    numPercent.value = displayScreen.value + "%";
+    percentScreen.value = displayScreen.value + "%";
+    // displayResult.value = result.toFixed(2);
 
-    if (numPercent.value === "") {
-      numPercent.style.display = "none";
+    if (numB.value === "" && sign !== "%") {
+      percentScreen.style.display = "none";
+      displayScreen.style.display = "block";
     } else {
-      numPercent.style.display = "block";
+      percentScreen.style.display = "block";
+      percentScreen.value = displayScreen.value + "%";
+      displayScreen.style.display = "none";
     }
   }
 
@@ -90,21 +99,13 @@ window.addEventListener("DOMContentLoaded", () => {
     .querySelector(".percent")
     .addEventListener("click", percentOperation);
 
-  // numPercent.addEventListener("input", () => {
-  //   if (numPercent.value === "") {
-  //     numPercent.style.display = "none";
-  //   } else {
-  //     numPercent.style.display = "block";
-  //   }
-  // });
-
   //выполнение вычислений
 
   function calc() {
     if (sign === "%") numB.value = +numC.value;
     switch (sign) {
       case "+":
-        result = +numA.value + +numB.value;
+        result = parseFloat(+numA.value + +numB.value);
         console.log(displayResult.value);
 
         console.log(result);
@@ -138,11 +139,11 @@ window.addEventListener("DOMContentLoaded", () => {
       default:
         break;
     }
-    displayResult.value = result.toFixed(2);
+    displayResult.value = parseFloat(result.toFixed(2));
+
     numA.value = "";
     numB.value = "";
     numC.value = "";
-    numPercent.style.display = "none";
   }
 
   document.querySelector(".calc").addEventListener("click", calc);
