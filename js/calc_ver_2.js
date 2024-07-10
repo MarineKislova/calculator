@@ -1,15 +1,12 @@
 window.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
-  console.log(parseInt(1.9));
-  console.log(parseFloat(1.9));
-
   // CALCULATOR
   let sign = ""; // знак операции
   let percentValue = ""; // процентное значение
   let digitsValue = "";
 
-  const operator = ["*", "/", "+", "-", ".", "%", "^", "="];
+  const operator = ["*", "/", "+", "-", "%", "^", "="];
   let per = "%";
   const digit = ["0", "1", "2", "3", "4", "5", "6'", "7", "8", "9", "."];
   const displayScreen = document.querySelector("#displayscreen");
@@ -22,6 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const percentScreen = document.querySelector("#percentscreen");
   let digits = document.querySelectorAll("#digital");
   let op = document.querySelectorAll("#op");
+  let dot = document.querySelector("#dot");
 
   //сброс данный с экрана
   function clearDisplay() {
@@ -34,7 +32,8 @@ window.addEventListener("DOMContentLoaded", () => {
     numC.value = "";
     // screen.value = "";
     percentScreen.value = "";
-    // percentScreen.style.display = "none";
+    displayScreen.style.display = "block";
+    percentScreen.style.display = "none";
   }
 
   document.querySelector("#clearAll").onclick = clearDisplay;
@@ -51,18 +50,23 @@ window.addEventListener("DOMContentLoaded", () => {
   digits.forEach((item, i) => {
     item.addEventListener("click", (e) => {
       digitsValue = digits[i].value;
-
       displayScreen.value += digitsValue;
 
       if (numA.value !== NaN && sign === "") {
         numA.value = displayScreen.value;
       } else if (numA.value !== NaN && sign !== "") {
-        numB.value += +digitsValue;
+        numB.value += digitsValue;
       }
-      if (numA.value !== NaN && numB.value !== NaN) {
+
+      if (
+        (numA.value !== NaN && numB.value !== NaN && sign === "+") ||
+        sign === "-"
+      ) {
+        percentValue = +numA.value * +numB.value * 0.01;
+        numC.value = percentValue;
+      } else {
         percentValue = +numB.value * 0.01;
         numC.value = percentValue;
-        // numB.value = +numC.value;
       }
     });
   });
@@ -114,32 +118,44 @@ window.addEventListener("DOMContentLoaded", () => {
         break;
       case "-":
         result = +numA.value - +numB.value;
-        // console.log(result);
         break;
       case "*":
         result = +numA.value * +numB.value;
-        // console.log(result);
         break;
       case "/":
         if (numB.value === "0") {
           displayResult.value = "На ноль делить нельзя!";
+          displayResult.style.color = 'red';
           numA.value = "";
           numB.value = "";
+          numC.value = "";
           sign = "";
           return;
         }
         result = +numA.value / +numB.value;
-        // console.log(result);
         break;
       case "^":
         result = Math.pow(+numA.value, +numB.value);
-        // console.log(result);
         break;
 
       default:
+        if (
+          displayResult.value === NaN ||
+          displayResult.value === undefined ||
+          displayResult.value === Infinity
+        ) {
+          displayResult.value =
+            "Проверьте введенные данные.";
+          numA.value = "";
+          numB.value = "";
+          numC.value = "";
+          sign = "";
+          return;
+        }
         break;
     }
-    displayResult.value = parseFloat(result.toFixed(2));
+
+    displayResult.value = parseFloat(result.toFixed(3));
 
     numA.value = "";
     numB.value = "";
