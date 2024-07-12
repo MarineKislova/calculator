@@ -3,6 +3,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // CALCULATOR
   let sign = ""; // знак операции
+  let signOP = ""; //знак операции при вводе с клавиатуры
+  let digitAdd = "";
   let percentValue = ""; // процентное значение
   let digitsValue = "";
 
@@ -42,6 +44,13 @@ window.addEventListener("DOMContentLoaded", () => {
   function backspace() {
     displayScreen.value = displayScreen.value.slice(0, -1);
     displayResult.value = displayResult.value.slice(0, -1);
+    numA.value = "";
+    numB.value = "";
+    numC.value = "";
+    // screen.value = "";
+    percentScreen.value = "";
+
+    // percentScreen.style.display = "none";
   }
   document.querySelector("#backspace").addEventListener("click", backspace);
 
@@ -49,6 +58,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   digits.forEach((item, i) => {
     item.addEventListener("click", (e) => {
+      if (displayScreen.value.length >= 10) return; // ограничение на количество цифр в поле
+
+      // if (displayScreen.value === "0" && digitsValue === "0") return; // если на экране 0 и нажата еще 0, то не выводить новую цифру
+
       digitsValue = digits[i].value;
       displayScreen.value += digitsValue;
 
@@ -81,6 +94,36 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  displayScreen.addEventListener("input", (e) => {
+    // if (e.target.value === "") {
+    //   e.target.value = displayScreen.value;
+    // }
+
+    if (operator.includes(e.target.value)) {
+      signOP = e.target.value;
+      console.log(signOP);
+    }
+
+    if (digit.includes(e.target.value) && e.target.value !== ".") {
+      digitAdd += +e.target.value;
+      console.log(digitAdd);
+    }
+
+    if (e.target.value.includes("%")) {
+      displayScreen.value = displayScreen.value.replace("%", "");
+      displayScreen.value = displayScreen.value.replace(Number, "");
+      percentScreen.value = displayScreen.value + "%";
+      // displayResult.value = displayScreen.value;
+    }
+    if (numA.value !== NaN && signOP === "") {
+      numA.value = displayScreen.value;
+      console.log(+numA.value);
+      console.log(typeof +numA.value);
+    } else if (numA.value !== NaN && signOP !== "") {
+      numB.value += +digitAdd;
+    }
+  });
+
   //отдельное вычисление после знака %
   let result;
 
@@ -106,78 +149,77 @@ window.addEventListener("DOMContentLoaded", () => {
   //выполнение вычислений
 
   function calc() {
-    if (sign === "%") numB.value = +numC.value;
+    if (
+      (numA.value !== NaN && sign !== "" && numB.value === "") ||
+      (numA.value === "" && sign !== "" && numB.value === "" && numC === "") ||
+      (numA.value !== "" && sign === "" && numB.value === "")
+    ) {
+      displayResult.value = "Проверьте введенные данные";
+      displayResult.style.color = "#4682B4";
+
+      numA.value = "";
+      numB.value = "";
+      numC.value = "";
+      sign = "";
+      return;
+    }
     switch (sign) {
       case "+":
-        result = parseFloat(+numA.value + +numB.value);
+        result = +numA.value + +numB.value;
         console.log(displayResult.value);
-
-        console.log(result);
-        console.log(typeof result);
 
         break;
       case "-":
         result = +numA.value - +numB.value;
         break;
       case "*":
-        result = +numA.value * +numB.value;
+        result = (+numA.value * +numB.value).toFixed(3);
         break;
       case "/":
         if (numB.value === "0") {
           displayResult.value = "На ноль делить нельзя!";
-          displayResult.style.color = 'red';
+          displayResult.style.color = "#CD5C5C";
           numA.value = "";
           numB.value = "";
           numC.value = "";
           sign = "";
           return;
         }
-        result = +numA.value / +numB.value;
+        result = (+numA.value / +numB.value).toFixed(3);
         break;
       case "^":
         result = Math.pow(+numA.value, +numB.value);
         break;
 
       default:
-        if (
-          displayResult.value === NaN ||
-          displayResult.value === undefined ||
-          displayResult.value === Infinity
-        ) {
-          displayResult.value =
-            "Проверьте введенные данные.";
-          numA.value = "";
-          numB.value = "";
-          numC.value = "";
-          sign = "";
-          return;
-        }
         break;
     }
 
-    displayResult.value = parseFloat(result.toFixed(3));
+    displayResult.value = parseFloat(result);
 
     numA.value = "";
     numB.value = "";
     numC.value = "";
+    sign = "";
+    // return;
   }
 
   document.querySelector(".calc").addEventListener("click", calc);
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      calc();
-    }
-    if (e.key === "Backspace") {
-      backspace();
-    }
-    if (e.key === "Escape") {
-      clearDisplay();
-    }
-    if (e.key === "16" && e.key === "53") {
-      percentOperation();
-    }
-  });
+  // document.addEventListener("keydown", (e) => {
+  //   if (e.key === "Enter") {
+  //     calc();
+  //   }
+  //   if (e.key === "Backspace") {
+  //     backspace();
+  //   }
+  //   if (e.key === "Escape") {
+  //     clearDisplay();
+  //   }
+  //   // if (e.key === "16" && e.key === "53") {
+  //   //   percentOperation();
+  //   // }
+  // });
 
   // end DOMContentLoaded
 });
